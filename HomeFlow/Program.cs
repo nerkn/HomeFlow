@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using HomeFlow.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<HomeFlowContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("HomeFlowContext") ?? throw new InvalidOperationException("Connection string 'HomeFlowContext' not found.")));
 
 // Add services to the container.
 
